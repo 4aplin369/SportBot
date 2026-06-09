@@ -131,6 +131,9 @@ def section_keyboard(section: str, user_data: dict) -> InlineKeyboardMarkup:
 def is_allowed(update: Update) -> bool:
     return update.effective_user.id in ALLOWED_USERS
 
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE):
+    logger.warning("Ошибка: %s", context.error)
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not is_allowed(update):
         await update.message.reply_text("⛔ Доступ закрыт.")
@@ -200,6 +203,7 @@ def main():
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button))
+    app.add_error_handler(error_handler)
     logger.info("Бот запущен")
     app.run_polling(close_loop=False)
 
