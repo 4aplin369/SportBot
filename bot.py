@@ -141,7 +141,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     data = load_data()
     user_data = get_user_data(data, update.effective_user.id)
     await update.message.reply_text(
-        "Привет! Выбери раздел:",
+        "Привет! У меня есть для тебя тренировочки 🤸‍♀️\nВыбери раздел:",
         reply_markup=main_menu_keyboard(user_data),
     )
 
