@@ -1,4 +1,5 @@
-﻿progress.json
+﻿.env
+progress.json
 .venv/
 __pycache__/
 *.pyc
