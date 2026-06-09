@@ -16,7 +16,9 @@ ALLOWED_USERS = {
     for uid in os.getenv("ALLOWED_USERS", "").split(",")
     if uid.strip().isdigit()
 }
-DATA_FILE = Path(__file__).parent / "progress.json"
+_data_dir = Path(os.getenv("DATA_DIR", Path(__file__).parent))
+_data_dir.mkdir(parents=True, exist_ok=True)
+DATA_FILE = _data_dir / "progress.json"
 
 # ─── Контент ────────────────────────────────────────────────────────────────
 
